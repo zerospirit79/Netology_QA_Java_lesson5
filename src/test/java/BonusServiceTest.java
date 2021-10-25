@@ -1,18 +1,15 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.StringCache;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class BonusServiceTest {
 
-    @Test
-    void shouldCalculateRegisteredAndBonusUnderLimit() {
+    @ParameterizedTest
+    void shouldCalculateRegisteredAndBonusUnderLimit(String testName, long amount, boolean registered, long expected) {
         BonusService service = new BonusService();
-
-        //Подготавливаем данные
-        long amount = 1000_60;
-        boolean registered = true;
-        long expected = 30;
 
         //Вызываем целевой метод
         long actual = service.calculate(registered, amount);
